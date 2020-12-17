@@ -189,15 +189,6 @@ instance ToJSON Package where
 instance FromJSON Package where
   parseJSON = genericParseJSON defaultOptions
   
-instance Read DiffTime where
-  readsPrec p input
-     = [(picosecondsToDiffTime $ floor (f*1000000000000)
-        ,Prelude.tail r)]
-    where
-      f :: Pico
-      r :: String
-      (f,r) = Prelude.head $ readsPrec p input
-
 aesonOptionsDropPrefix :: Options
 aesonOptionsDropPrefix
   = defaultOptions {
